@@ -3,22 +3,27 @@
   hosts: localhost
   become: yes
   vars:
-    packages_name: ["vim","jq"]
-    filename: user.txt
+    packages: ["vim","jq"]
+    username: "{{ ansible_user }}"
+    hostname: "{{ ansible_hostname }}"
+    current_date: "{{ ansible_date_time.date }}"
+    filename: "user.txt"
   tasks:
     - name: installing packages on ubuntu machine 
       ansible.builtin.apt:
-        name: "{{packages_name}}"
+        name: "{{packages}}"
         state: present
-        update_cache: ture
-    - name: templating a file 
+        update_cache: yes
+    - name: Create file from template
       ansible.builtin.template:
-        src: template/user.txt
-        dest: home/"{{filename}}"
-    - name: cat the file content to stdout
+        src: template/user.txt.j2
+        dest: "/home/{{ username }}/{{ filename }}"
+      become: true
+    - name: display file content
       ansible.builtin.shell:
-        cmd: cat /home/user.txt
-    - name: print the content to console
+        cmd: "cat /home/{{ username }}/{{ filename }}"
+        register: file_content
+    - name: show content
       ansible.builtin.debug:
-        msg: "{{command_output_stdout}}"
+        var: file_content.stdout_lines
         
