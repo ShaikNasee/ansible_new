@@ -4,7 +4,7 @@
   become: yes
   vars:
     packages: ["vim","jq"]
-    username: "{{ ansible_user }}"
+    username: "{{ hostname }}"
     hostname: "{{ ansible_hostname }}"
     current_date: "{{ ansible_date_time.date }}"
     filename: "user.txt"
@@ -17,12 +17,12 @@
     - name: Create file from template
       ansible.builtin.template:
         src: template/user.txt.j2
-        dest: "/home/{{ username }}/{{ filename }}"
+        dest: "/home/{{ filename }}"
       become: true
     - name: display file content
-      ansible.builtin.shell:
-        cmd: "cat /home/{{ username }}/{{ filename }}"
-        register: file_content
+      ansible.builtin.command:
+        cmd: "cat /home/{{ filename }}"
+      register: file_content
     - name: show content
       ansible.builtin.debug:
         var: file_content.stdout_lines
