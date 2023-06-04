@@ -4,9 +4,6 @@
   become: yes
   vars:
     packages: ["vim","jq"]
-    username: "{{ hostname }}"
-    hostname: "{{ ansible_hostname }}"
-    current_date: "{{ ansible_date_time.date }}"
     filename: "user.txt"
   tasks:
     - name: installing packages on ubuntu machine 
