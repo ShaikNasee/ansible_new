@@ -7,9 +7,9 @@
     filename: "user.txt"
   tasks:
     - name: include installa packages task 
-      include_task: tasks/install_packages.yml
+      import_task: tasks/install_packages.yml
     - name: include create file task 
-      include_task: tasks/create_file.yml 
+      import_task: tasks/create_file.yml 
     - name: include Display content task
-      include_task: tasks/display_content.yml
+      import_task: tasks/display_content.yml
         
