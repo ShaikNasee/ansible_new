@@ -6,21 +6,10 @@
     packages: ["vim","jq"]
     filename: "user.txt"
   tasks:
-    - name: installing packages on ubuntu machine 
-      ansible.builtin.apt:
-        name: "{{packages}}"
-        state: present
-        update_cache: yes
-    - name: Create file from template
-      ansible.builtin.template:
-        src: template/user.txt.j2
-        dest: "/home/{{ filename }}"
-      become: true
-    - name: display file content
-      ansible.builtin.command:
-        cmd: "cat /home/{{ filename }}"
-      register: file_content
-    - name: show content
-      ansible.builtin.debug:
-        var: file_content.stdout_lines
+    - name: include installa packages task 
+      include_task: tasks/install_packages.yml
+    - name: include create file task 
+      include_task: tasks/create_file.yml 
+    - name: include Display content task
+      include_task: tasks/display_content.yml
         
