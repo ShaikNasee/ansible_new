@@ -2,6 +2,8 @@
 - name: installig vim & jq 
   hosts: localhost
   become: yes
+  vars_files:
+    - /group_vars/all/main.yml
   tasks:
     - name: Include install packages task
       import_tasks: tasks/install_packages.yml
