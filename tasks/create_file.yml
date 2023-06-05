@@ -2,5 +2,5 @@
 - name: Create file from template
   ansible.builtin.template:
     src: template/user.txt.j2
-    dest: "/home/{{ filename }}"
+    dest: "/home/{{filename}}"
   become: true
