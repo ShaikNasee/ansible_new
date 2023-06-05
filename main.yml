@@ -7,11 +7,11 @@
     filename: "user.txt"
   tasks:
     - name: include installa packages task 
-      import_task: tasks/install_packages.yml
+      import_tasks: tasks/install_packages.yml
 
     - name: include create file task 
-      import_task: tasks/create_file.yml 
+      import_tasks: tasks/create_file.yml 
       
     - name: include Display content task
-      import_task: tasks/display_content.yml
+      import_tasks: tasks/display_content.yml
         
