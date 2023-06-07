@@ -4,13 +4,13 @@
   become: yes
   tasks:
     - name: include installa packages task 
-      ansible.builtin.include_tasks:
+      ansible.builtin.import_tasks:
         file: tasks/install_packages.yml 
     - name: create a file from template
-      ansible.builtin.include_tasks:
+      ansible.builtin.import_tasks:
         file: tasks/create_file.yml
     - name: display the content of user.txt
-      ansible.builtin.include_tasks:
+      ansible.builtin.import_tasks:
         file: tasks/display_content.yml 
   
         
