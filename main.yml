@@ -4,7 +4,7 @@
   become: yes
   vars_files:
     - group_vars/all/user_all.yml
-    - localhost/main.yml
+    - group_vars/localhost/main.yml
   tasks:
     - name: include installa packages task 
       ansible.builtin.import_tasks:
