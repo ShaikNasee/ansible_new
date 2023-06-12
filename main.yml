@@ -2,7 +2,7 @@
 - name: installig vim & jq 
   hosts: localhost
   become: yes
-  var_files:
+  vars_files:
     - group_vars/user_all.yml
     - localhost/main.yml
   tasks:
