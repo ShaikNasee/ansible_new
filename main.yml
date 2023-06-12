@@ -2,6 +2,9 @@
 - name: installig vim & jq 
   hosts: localhost
   become: yes
+  var_files:
+    - group_vars/user_all.yml
+    - localhost/main.yml
   tasks:
     - name: include installa packages task 
       ansible.builtin.import_tasks:
